@@ -1,0 +1,6 @@
+\set ON_ERROR_STOP on
+BEGIN;
+TRUNCATE TABLE public.car_registrations_raw;
+\copy public.car_registrations_raw (date_reg, type, maker, model, colour, fuel, state) FROM 'data/raw/cars_2025.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+\copy public.car_registrations_raw (date_reg, type, maker, model, colour, fuel, state) FROM 'data/raw/cars_2026.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+COMMIT;

@@ -1,0 +1,8 @@
+\set ON_ERROR_STOP on
+SELECT 'CREATE DATABASE malaysia_ev'
+WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'malaysia_ev')
+\gexec
+\connect malaysia_ev
+\ir 01_create_table.sql
+\ir 02_import_data.psql
+\ir 03_validate_data.sql
