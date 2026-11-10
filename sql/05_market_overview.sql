@@ -7,7 +7,7 @@ SELECT
     ROUND(
         100.0 * COUNT(*) FILTER(WHERE fuel = 'electric') / NULLIF(COUNT(*), 0), 2   
     ) AS ev_share_pct
-FROM public.car_registrations_raw
+FROM public.car_registrations_clean
 WHERE (date_reg >= DATE '2025-01-01'
        AND date_reg < DATE '2025-10-01')
    OR (date_reg >= DATE '2026-01-01'
@@ -23,7 +23,7 @@ WITH yearly AS(
         COUNT(*) FILTER(
             WHERE fuel = 'electric'
     ) AS ev_registrations
-FROM public.car_registrations_raw
+FROM public.car_registrations_clean
 WHERE (date_reg >= DATE '2025-01-01'
        AND date_reg < DATE '2025-10-01')
    OR (date_reg >= DATE '2026-01-01'
@@ -62,7 +62,7 @@ WITH monthly AS(
         ROUND(
             100.0 * COUNT(*) FILTER(WHERE fuel = 'electric') / NULLIF(COUNT(*), 0), 2   
         ) AS ev_share_pct
-    FROM public.car_registrations_raw
+    FROM public.car_registrations_clean
     WHERE (date_reg >= DATE '2025-01-01'
         AND date_reg < DATE '2025-10-01')
     OR (date_reg >= DATE '2026-01-01'
